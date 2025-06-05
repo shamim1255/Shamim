@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বেস কনভার্টার অ্যাপ</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            /* Background Image from the provided link */
+            background: url('https://ik.imagekit.io/rmlbayysp/1749144717980-1000061723_NuD2sB7Qsl.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff; /* Default text color white */
+            display: flex;
+            /* Align items to start if container doesn't take full height,
+               otherwise center if container is smaller */
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            box-sizing: border-box;
+            position: relative;
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+             /* Add padding-bottom to make space for the ad section if needed */
+            padding-bottom: 80px; /* Adjust this value based on ad height + margin */
+        }
+
+        /* Semi-transparent dark overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.65); /* Adjust opacity as needed */
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2; /* Content above the overlay */
+            width: 90%;
+            max-width: 700px; /* Container width like the TOJI page */
+            margin: 40px auto 20px auto; /* Adjusted margin */
+            padding: 25px;
+            /* Semi-transparent background for the container */
+            background-color: rgba(255, 255, 255, 0.1); /* Very light transparency */
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px); /* Subtle blur effect */
+        }
+
+        header h1 {
+            color: #39ff14; /* Neon Green color for Header */
+            margin-bottom: 25px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Image Slider Styling */
+        .image-slider {
+            width: 100%;
+            overflow: hidden;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            position: relative;
+            height: 350px; /* Fixed height for slider - adjust if needed */
+            background-color: #222; /* Dark background behind slider */
+        }
+
+        .slides-wrapper {
+            display: flex;
+            width: fit-content; /* Adjust width based on content */
+            animation: slide-animation 25s linear infinite; /* Animation speed */
+        }
+
+        .image-slider img {
+            height: 350px; /* Match slider height */
+            width: auto; /* Maintain aspect ratio */
+            flex-shrink: 0; /* Prevent images from shrinking */
+            margin-right: 15px; /* Space between images */
+            border-radius: 5px;
+            object-fit: cover; /* Images will cover the area, might be cropped */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animation Keyframes */
+        @keyframes slide-animation {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Moves by 50% of the wrapper width */
+        }
+
+        .download-section {
+            margin: 35px 0;
+        }
+
+        .download-button {
+            display: inline-block;
+            /* Blue Gradient Button like TOJI */
+            background: linear-gradient(to right, #007bff, #0056b3);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .download-button:hover {
+            background: linear-gradient(to right, #0056b3, #003f7f);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .description-section {
+            margin-top: 30px;
+            text-align: justify;
+            background-color: rgba(255, 255, 255, 0.05); /* More transparent background */
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .description-section h2 {
+            color: #00ffff; /* Cyan color for subheading */
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff; /* Glow effect */
+        }
+
+        .description-section p {
+            color: #ccc; /* Light grey text */
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        /* Styles for the ad section */
+        .ad-section {
+            margin-top: 40px; /* Space above the ad */
+            padding: 20px 10px; /* Padding around the ad */
+            text-align: center; /* Center the ad content (iframe) */
+            position: relative;
+            z-index: 2;
+            /* background-color: rgba(0, 0, 0, 0.3); /* Optional: slightly dark background for ad section */
+            /* border-radius: 8px; */
+            width: 100%; /* Take full width */
+            max-width: 700px; /* Match container max-width */
+            margin: 40px auto 0 auto; /* Center the ad section itself */
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                margin-top: 20px;
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .image-slider {
+                height: 280px; /* Smaller height on small screens */
+                margin: 15px auto;
+            }
+             .image-slider img {
+                height: 280px; /* Match smaller height */
+                margin-right: 10px;
+            }
+
+            .download-button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+
+            .description-section {
+                padding: 15px;
+            }
+
+            .description-section h2 {
+                font-size: 1.5em;
+            }
+
+            .description-section p {
+                font-size: 1em;
+            }
+
+            .ad-section {
+                 margin-top: 30px;
+                 padding: 15px 5px;
+                 max-width: 95%; /* Adjust max-width for smaller screens */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>বেস কনভার্টার অ্যাপ</h1>
+            <!-- লোগো থাকবে না -->
+        </header>
+
+        <section class="image-slider">
+            <div class="slides-wrapper">
+                <!-- আপনার দেওয়া ছবিগুলোর অনলাইন লিংক এখানে -->
+                <!-- স্লাইড স্মুথ করার জন্য ছবিগুলো কয়েকবার পুনরাবৃত্তি করা হয়েছে -->
+                <img src="https://ik.imagekit.io/rmlbayysp/1749144671703-1000063946_1ZDZdjGtK.png" alt="বেস কনভার্টার স্ক্রিনশট 1">
+                <img src="https://ik.imagekit.io/rmlbayysp/1749144717980-1000061723_NuD2sB7Qsl.jpg" alt="বেস কনভার্টার স্ক্রিনশট 2">
+                <!-- ছবিগুলো কয়েকবার পুনরাবৃত্তি করুন -->
+                <img src="https://ik.imagekit.io/rmlbayysp/1749144671703-1000063946_1ZDZdjGtK.png" alt="বেস কনভার্টার স্ক্রিনশট 1">
+                <img src="https://ik.imagekit.io/rmlbayysp/1749144717980-1000061723_NuD2sB7Qsl.jpg" alt="বেস কনভার্টার স্ক্রিনশট 2">
+                 <img src="https://ik.imagekit.io/rmlbayysp/1749144671703-1000063946_1ZDZdjGtK.png" alt="বেস কনভার্টার স্ক্রিনশট 1">
+                <img src="https://ik.imagekit.io/rmlbayysp/1749144717980-1000061723_NuD2sB7Qsl.jpg" alt="বেস কনভার্টার স্ক্রিনशट 2">
+                 <img src="https://ik.imagekit.io/rmlbayysp/1749144671703-1000063946_1ZDZdjGtK.png" alt="বেস কনভার্টার স্ক্রিনশট 1">
+                <img src="https://ik.imagekit.io/rmlbayysp/1749144717980-1000061723_NuD2sB7Qsl.jpg" alt="বেস কনভার্টার স্ক্রিনশট 2">
+            </div>
+        </section>
+
+        <section class="download-section">
+             <a href="https://drive.google.com/file/d/1WfOoT27re6aohc5NZZ4KUCcWuOhbfLZF/view?usp=drivesdk" class="download-button">
+                এখনই ডাউনলোড করুন (APK)
+            </a>
+        </section>
+
+        <section class="description-section">
+            <h2>অ্যাপ সম্পর্কে বিস্তারিত</h2>
+            <p>
+                এই অসাধারণ বেস কনভার্টার মোবাইল অ্যাপটির মাধ্যমে আপনি বিভিন্ন সংখ্যার ভিত্তি (Base) যেমন বাইনারি (Binary), অক্টাল (Octal), ডেসিমাল (Decimal), এবং হেক্সাডেসিমাল (Hexadecimal) সহ যেকোনো সংখ্যাকে দ্রুত এবং নিখুঁতভাবে রূপান্তর করতে পারবেন। এর ইউজার-ফ্রেন্ডলি ইন্টারফেস ব্যবহার করে আপনি সহজেই যেকোনো সংখ্যাকে এক বেস থেকে অন্য বেসে পরিবর্তন করতে পারবেন।
+            </p>
+            <p>
+                 শিক্ষার্থী, প্রোগ্রামার, প্রকৌশলী বা সংখ্যা পদ্ধতি নিয়ে কাজ করেন এমন যে কারো জন্য এই অ্যাপটি অত্যন্ত উপযোগী। এটি জটিল গণনাকে সহজ করে তোলে এবং আপনার মূল্যবান সময় বাঁচায়। নির্ভুল ফলাফল এবং দ্রুত প্রক্রিয়াকরণের জন্য এখনই ডাউনলোড করুন বেস কনভার্টার অ্যাপ!
+            </p>
+        </section>
+
+    </div> <!-- End of container -->
+
+    <!-- Ad Section below the main content and centered -->
+    <section class="ad-section">
+        <!-- আপনার দেওয়া বিজ্ঞাপনের কোড -->
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'fce92d214f666cf68e800ad2fb8dc925',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/fce92d214f666cf68e800ad2fb8dc925/invoke.js"></script>
+        <!-- বিজ্ঞাপনের কোড শেষ -->
+    </section>
+
+</body>
+</html>
